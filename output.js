@@ -1,119 +1,291 @@
-//Mon Apr 28 2025 08:23:47 GMT+0000 (Coordinated Universal Time)
+//Mon Apr 28 2025 08:42:35 GMT+0000 (Coordinated Universal Time)
 //Base:<url id="cv1cref6o68qmpt26ol0" type="url" status="parsed" title="GitHub - echo094/decode-js: JS混淆代码的AST分析工具 AST analysis tool for obfuscated JS code" wc="2165">https://github.com/echo094/decode-js</url>
 //Modify:<url id="cv1cref6o68qmpt26olg" type="url" status="parsed" title="GitHub - smallfawn/decode_action: 世界上本来不存在加密，加密的人多了，也便成就了解密" wc="741">https://github.com/smallfawn/decode_action</url>
-function getUrl(_0x2d7af2) {
-  var _0x1ad9c8 = new RegExp("(^|&)" + _0x2d7af2 + "=([^&]*)(&|$)");
-  var _0x45a67c = window.location.search.substr(1).match(_0x1ad9c8);
-  if (_0x45a67c != null) return _0x45a67c[2];
-  return null;
-}
-function getUrlDecode(_0x3264b2) {
-  var _0x438377 = Base64.decode(getUrl("nmpa"));
-  var _0x59e70f = new RegExp("(^|&)" + _0x3264b2 + "=([^&]*)(&|$)");
-  var _0x511814 = _0x438377.match(_0x59e70f);
-  if (_0x511814 != null) return _0x511814[2];
-  return null;
-}
-function setCookie(_0x31a103, _0x19c2af, _0xeccfde) {
-  if (!_0xeccfde) _0xeccfde = 10000;
-  var _0x578f02 = new Date();
-  _0x578f02.setTime(_0x578f02.getTime() + _0xeccfde * 24 * 60 * 60 * 1000);
-  var _0x25b1d4 = "expires=" + _0x578f02.toGMTString();
-  document.cookie = _0x31a103 + "=" + _0x19c2af + "; " + _0x25b1d4;
-}
-function setCookieAuto(_0xc11d0e, _0x4d3289) {
-  document.cookie = _0xc11d0e + "=" + _0x4d3289 + ";path=/";
-}
-function getCookie(_0x4ff938) {
-  var _0x4da56d = _0x4ff938 + "=";
-  var _0x511999 = document.cookie.split(";");
-  for (var _0x5c82cd = 0; _0x5c82cd < _0x511999.length; _0x5c82cd++) {
-    var _0x282514 = _0x511999[_0x5c82cd].trim();
-    if (_0x282514.indexOf(_0x4da56d) == 0) {
-      return _0x282514.substring(_0x4da56d.length, _0x282514.length);
-    }
-  }
-  return "";
-}
-function clearCookie(_0x49ff8d) {
-  var _0x2d7ada = new Date();
-  _0x2d7ada.setTime(_0x2d7ada.getTime() - 1);
-  var _0x38d56b = getCookie(_0x49ff8d);
-  if (_0x38d56b != null) {
-    {
-      console.log(document.cookie);
-      document.cookie = _0x49ff8d + "=" + _0x38d56b + ";expires=" + _0x2d7ada.toGMTString();
-      console.log(document.cookie);
-    }
+var appSecret = "nmpasecret2020";
+function getLoginToken() {
+  var _0x435b34 = getUrl("token") || getCookie("token");
+  if (_0x435b34) {
+    return _0x435b34;
+  } else {
+    return false;
   }
 }
-function getHashName(_0x3fb761) {
-  var _0x527428 = new RegExp("(^|&)" + _0x3fb761 + "=([^&]*)(&|$)");
-  var _0x3578fd = window.location.hash.substr(1).match(_0x527428);
-  if (_0x3578fd != null) return _0x3578fd[2];
-  return null;
-}
-var attach = {
-  "preview": function (_0x2504e5) {
-    if ("image" == this.getFileType(_0x2504e5)) {
-      this.urlShow = true;
-    } else if ("pdf" == this.getFileType(_0x2504e5)) {
+if (!Object.keys) {
+  Object.keys = function () {
+    var _0x4eea42 = Object.prototype.hasOwnProperty,
+      _0x1814d9 = !{
+        "toString": null
+      }.propertyIsEnumerable("toString"),
+      _0xe68fee = ["toString", "toLocaleString", "valueOf", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "constructor"],
+      _0x44c401 = _0xe68fee.length;
+    return function (_0x5a5fd2) {
       {
-        var _0x1a4af = location.href.toString();
-        if (_0x1a4af.indexOf("custom-html") > 0) {
-          window.open("../../preview-pdf.html?url=" + _0x2504e5);
-        } else {
-          window.open("./preview-pdf.html?url=" + _0x2504e5);
+        if (typeof _0x5a5fd2 !== "object" && typeof _0x5a5fd2 !== "function" || _0x5a5fd2 === null) throw new TypeError("Object.keys called on non-object");
+        var _0x298d66 = [];
+        for (var _0x4629d2 in _0x5a5fd2) {
+          if (_0x4eea42.call(_0x5a5fd2, _0x4629d2)) _0x298d66.push(_0x4629d2);
         }
-        return false;
+        if (_0x1814d9) {
+          for (var _0x5c8e87 = 0; _0x5c8e87 < _0x44c401; _0x5c8e87++) {
+            {
+              if (_0x4eea42.call(_0x5a5fd2, _0xe68fee[_0x5c8e87])) _0x298d66.push(_0xe68fee[_0x5c8e87]);
+            }
+          }
+        }
+        return _0x298d66;
+      }
+    };
+  }();
+}
+function deepCopy(_0x68ded1) {
+  var _0x107ca6 = [];
+  function _0x1278f6(_0x68ded1) {
+    if (typeof _0x68ded1 !== "object" || !_0x68ded1) {
+      return _0x68ded1;
+    }
+    for (var _0xbba1e5 = 0; _0xbba1e5 < _0x107ca6.length; _0xbba1e5++) {
+      if (_0x107ca6[_0xbba1e5].target === _0x68ded1) {
+        return _0x107ca6[_0xbba1e5].copyTarget;
+      }
+    }
+    var _0x215196 = {};
+    if (Array.isArray(_0x68ded1)) {
+      _0x215196 = [];
+    }
+    _0x107ca6.push({
+      "target": _0x68ded1,
+      "copyTarget": _0x215196
+    });
+    for (var _0xbba1e5 = 0; _0xbba1e5 < Object.keys(_0x68ded1).length; _0xbba1e5++) {
+      {
+        var _0x53abe7 = _0xbba1e5;
+        if (_0x215196[_0x53abe7]) {
+          return;
+        }
+        _0x215196[_0x53abe7] = _0x1278f6(_0x68ded1[_0x53abe7]);
+      }
+    }
+    return _0x215196;
+  }
+  return _0x1278f6(_0x68ded1);
+}
+function getSign(_0x3ba599) {
+  if (typeof _0x3ba599 == "string") {
+    {
+      return paramsStrSort(_0x3ba599);
+    }
+  } else if (typeof _0x3ba599 == "object") {
+    {
+      var _0x992603 = [];
+      for (var _0x25b3a5 in _0x3ba599) {
+        if (_0x3ba599[_0x25b3a5] != "" && _0x3ba599[_0x25b3a5] != undefined && _0x3ba599[_0x25b3a5] != null) {
+          _0x992603.push(_0x25b3a5 + "=" + _0x3ba599[_0x25b3a5]);
+        }
+      }
+      return paramsStrSort(_0x992603.join("&"));
+    }
+  }
+}
+function paramsStrSort(_0x4a951a, _0x38ad25, _0x352437) {
+  var _0x365ffa = _0x4a951a;
+  var _0x2f0ccf = _0x365ffa.split("&").sort().join("&");
+  return _0x2f0ccf;
+}
+function jsonMD5ToStr(_0x20954c) {
+  _0x20954c = _0x20954c.concat("&" + appSecret);
+  _0x20954c = encodeURIComponent(_0x20954c);
+  _0x20954c = _0x20954c.replace(new RegExp("!", "gm"), "%21");
+  _0x20954c = _0x20954c.replace(new RegExp("\\(", "gm"), "%28");
+  _0x20954c = _0x20954c.replace(new RegExp("\\)", "gm"), "%29");
+  _0x20954c = _0x20954c.replace(new RegExp("~", "gm"), "%7E");
+  return hex_md5(_0x20954c);
+}
+function jsonMD5ToStr2(_0x8f5695) {
+  var _0x535b46 = [];
+  for (name in _0x8f5695) {
+    _0x535b46.push(name + "=" + _0x8f5695[name]);
+  }
+  _0x535b46.sort();
+  var _0x3fe6a3 = _0x535b46.join("&");
+  return hex_md5(_0x3fe6a3);
+}
+var loadingRequestCount = 0;
+function showLoading() {
+  var _0x58a940 = document.querySelector(".root");
+  var _0x45c81d = document.querySelector("#p-loading");
+  var _0x3920ca = document.createElement("div");
+  _0x3920ca.className = "van-overlay";
+  _0x3920ca.id = "p-loading";
+  _0x3920ca.innerHTML = "<div class=\"spinner\"></div>";
+  if (loadingRequestCount == 0) {
+    _0x58a940.appendChild(_0x3920ca);
+  }
+  loadingRequestCount++;
+}
+function hideLoading() {
+  var _0x2ec27d = document.querySelector(".root");
+  var _0x1709f9 = document.querySelector("#p-loading");
+  if (loadingRequestCount <= 0) return;
+  loadingRequestCount--;
+  if (loadingRequestCount == 0) {
+    _0x2ec27d.removeChild(_0x1709f9);
+  }
+}
+var service = axios.create({
+  "timeout": 60000
+});
+service.interceptors.request.use(function (_0x18f171) {
+  showLoading(_0x18f171);
+  return _0x18f171;
+}, function (_0x134036) {
+  Promise.reject(_0x134036);
+});
+service.interceptors.response.use(function (_0x524f77) {
+  hideLoading();
+  var _0x502794 = {};
+  _0x502794.status = _0x524f77.status;
+  _0x502794.data = _0x524f77.data;
+  return _0x502794;
+}, function (_0xe3ab81) {
+  hideLoading();
+  if (_0xe3ab81.response && _0xe3ab81.response.status == 404) {}
+  return Promise.resolve(_0xe3ab81);
+});
+var pajax = {
+  "hasSignGet": function (_0x112189, _0xc62802) {
+    _0xc62802 = _0xc62802 || {};
+    var _0x3efd01 = getLoginToken();
+    var _0x4c87a3 = deepCopy(_0xc62802);
+    for (var _0x45bbf2 in _0x4c87a3) {
+      if (_0x4c87a3[_0x45bbf2] == "") {
+        delete _0x4c87a3[_0x45bbf2];
+      }
+    }
+    _0x4c87a3.timestamp = this.getdate();
+    return service({
+      "url": _0x112189,
+      "method": "get",
+      "headers": {
+        "timestamp": _0x4c87a3.timestamp,
+        "sign": jsonMD5ToStr(_0x4c87a3)
+      },
+      "params": _0xc62802
+    });
+  },
+  "getdate": function () {
+    var _0x6c7024 = null;
+    if (window.XMLHttpRequest) {
+      _0x6c7024 = new window.XMLHttpRequest();
+    } else {
+      _0x6c7024 = new ActiveObject("Microsoft");
+    }
+    _0x6c7024.open("GET", itemFileUrl + "config/DATE.json?date=" + new Date().getTime(), false);
+    _0x6c7024.send(null);
+    var _0x25870a = _0x6c7024.getResponseHeader("Date");
+    return new Date(_0x25870a).getTime();
+  },
+  "hasTokenGet": function (_0x194f10, _0x20d400) {
+    _0x20d400 = _0x20d400 || {};
+    var _0x37cd60 = getLoginToken();
+    _0x20d400.timestamp = this.getdate();
+    var _0x2cd4d6 = getSign(_0x20d400);
+    for (var _0x1a609b in _0x2cd4d6) {
+      {
+        if (_0x2cd4d6[_0x1a609b] == "") {
+          delete _0x2cd4d6[_0x1a609b];
+        }
+      }
+    }
+    return service({
+      "url": _0x194f10,
+      "method": "get",
+      "headers": {
+        "token": _0x37cd60,
+        "timestamp": _0x20d400.timestamp,
+        "sign": jsonMD5ToStr(_0x2cd4d6)
+      },
+      "params": _0x20d400
+    });
+  },
+  "blobGet": function (_0x21fb14, _0x3fae5c) {
+    _0x3fae5c = _0x3fae5c || {};
+    return service({
+      "url": _0x21fb14,
+      "method": "get",
+      "responseType": "blob",
+      "headers": {},
+      "params": _0x3fae5c
+    });
+  },
+  "get": function (_0x13cdbf, _0x1055ce) {
+    _0x1055ce = _0x1055ce || {};
+    return service({
+      "url": _0x13cdbf + "?date=" + new Date().getTime(),
+      "method": "get",
+      "headers": {},
+      "params": _0x1055ce
+    });
+  },
+  "post": function (_0x54fcfb, _0x488f9f) {
+    _0x488f9f = _0x488f9f || {};
+    var _0x432d0b = {
+      "url": _0x54fcfb,
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      "data": _0x488f9f
+    };
+    _0x432d0b.data = JSON.stringify(_0x488f9f);
+    return service(_0x432d0b);
+  },
+  "put": function (_0x5772, _0x402d46) {
+    _0x402d46 = _0x402d46 || {};
+    return service({
+      "url": _0x5772,
+      "method": "put",
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      "data": JSON.stringify(_0x402d46)
+    });
+  },
+  "deletes": function (_0x1d30f1) {
+    return service({
+      "url": _0x1d30f1,
+      "method": "delete",
+      "headers": {}
+    });
+  },
+  "goInfoPage": function (_0x55705b, _0xcf8fca, _0x4ced27, _0x230ba4, _0x25592b) {
+    var _0x2a9ef6 = "";
+    if (_0x4ced27) {
+      {
+        var _0x1ec4a4 = Base64.encode("url=" + _0x4ced27 + "&id=" + _0x55705b + "&itemId=" + _0xcf8fca);
+        if (_0x25592b) {
+          _0x2a9ef6 = "app-";
+          var _0x354d99 = _0x2a9ef6 + "other-info.html?nmpa=" + _0x1ec4a4;
+          location.href = _0x354d99;
+        } else {
+          {
+            var _0x354d99 = _0x2a9ef6 + "other-info.html?nmpa=" + _0x1ec4a4;
+            api.openWebWin(_0x354d99);
+          }
+        }
       }
     } else {
-      window.open(_0x2504e5);
-      return false;
-    }
-  },
-  "download": function (_0x319138) {
-    var _0x5d1efd = document.createElement("a");
-    var _0x27b82e = _0x319138;
-    _0x5d1efd.download = _0x27b82e;
-    _0x5d1efd.style.display = "none";
-    _0x5d1efd.href = _0x27b82e;
-    document.body.appendChild(_0x5d1efd);
-    _0x5d1efd.click();
-    document.body.removeChild(_0x5d1efd);
-  },
-  "getFileType": function (_0x522a18) {
-    var _0x20d1a8 = "";
-    var _0x48dd44 = "";
-    try {
-      var _0x3ebed8 = _0x522a18.split(".");
-      _0x20d1a8 = _0x3ebed8[_0x3ebed8.length - 1];
-    } catch (_0x595e6e) {
-      _0x20d1a8 = "";
-    }
-    if (!_0x20d1a8) {
-      return false;
-    }
-    _0x20d1a8 = _0x20d1a8.toLocaleLowerCase();
-    var _0x4e8be6 = ["png", "jpg", "jpeg", "bmp", "gif"];
-    _0x48dd44 = _0x4e8be6.find(function (_0x10cb32) {
-      return _0x10cb32 === _0x20d1a8;
-    });
-    if (_0x48dd44) {
-      return "image";
-    }
-    var _0x5ea0f8 = ["pdf"];
-    _0x48dd44 = _0x5ea0f8.find(function (_0x205830) {
-      {
-        return _0x205830 === _0x20d1a8;
-      }
-    });
-    if (_0x48dd44) {
-      {
-        return "pdf";
+      var _0x1ec4a4 = Base64.encode("id=" + _0x55705b + "&itemId=" + _0xcf8fca);
+      if (_0x25592b) {
+        _0x2a9ef6 = "app-";
+        var _0x354d99 = _0x2a9ef6 + "search-info.html?nmpa=" + _0x1ec4a4;
+        location.href = _0x354d99;
+      } else {
+        {
+          var _0x354d99 = _0x2a9ef6 + "search-info.html?nmpa=" + _0x1ec4a4;
+          api.openWebWin(_0x354d99);
+        }
       }
     }
-    return "other";
   }
 };
-_0xods = "jsjiami.com.v6";
+_0xodE = "jsjiami.com.v6";
